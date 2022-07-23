@@ -25,7 +25,7 @@ class APICaller {
     // 这后面的是可以变化的url
     // 返回result时候，要么movie， 要么error
     func getTrendingMovies(completion: @escaping (Result<[MovieInterface], Error>) -> Void) {
-        guard let url = URL(string: "\(Constants.baseURL)3/trending/all/day?api_key=\(Constants.API_KEY)") else {return}
+        guard let url = URL(string: "\(Constants.baseURL)3/trending/movie/day?api_key=\(Constants.API_KEY)") else {return}
         
         // we get the data! from the link
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, _, error in
@@ -47,8 +47,28 @@ class APICaller {
         }
             
             task.resume()
-            
-            
-        
     }
+    
+    // for tvs
+    func getTrendingTvs(completion: @escaping (Result<[String], Error>) -> Void) {
+        guard let url = URL(string: "\(Constants.baseURL)3/trending/tv/day?api_key=\(Constants.API_KEY)") else {return}
+        
+        // we get the data! from the link
+        let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, _, error in
+            guard let data = data, error == nil else {
+                return
+            }
+            do {
+                let results = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
+                print(results)
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+            
+            task.resume()
+    }
+    
+    
+    
 }
