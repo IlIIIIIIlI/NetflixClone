@@ -23,7 +23,8 @@ class APICaller {
     static let shared = APICaller()
     
     // 这后面的是可以变化的url
-    func getTrendingMovies(completion: @escaping (String) -> Void) {
+    // 返回result时候，要么movie， 要么error
+    func getTrendingMovies(completion: @escaping (Result<[MovieInterface], Error>) -> Void) {
         guard let url = URL(string: "\(Constants.baseURL)3/trending/all/day?api_key=\(Constants.API_KEY)") else {return}
         
         // we get the data! from the link
@@ -38,9 +39,10 @@ class APICaller {
 //                let results = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
 //                print(results)
                 let results = try JSONDecoder().decode(TrendingMoviesResponse.self, from: data)
-                print(results)
+                completion(.success(results.results))
             } catch {
-                print(error.localizedDescription)
+//                print(error.localizedDescription)
+                completion(.failure(error))
             }
         }
             

@@ -83,7 +83,18 @@ class HomeViewController: UIViewController {
     
     // 与APICaller相呼应，用于提取数据到主页
     private func getTrendingMovies() {
-        APICaller.shared.getTrendingMovies { _ in
+        APICaller.shared.getTrendingMovies { results in
+            
+            // home 会做一个条件判断
+            switch results {
+            
+            case .success(let MovieInterface):
+                print(MovieInterface)
+                
+            case .failure(let error):
+                print(error)
+            
+            }
         
         }
     }
