@@ -20,6 +20,7 @@
 		844AB5CB2888405E007E6E40 /* HeroHeaderUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844AB5CA2888405E007E6E40 /* HeroHeaderUIView.swift */; };
 		84916DD6288BE6CF00AA08D8 /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84916DD5288BE6CF00AA08D8 /* APICaller.swift */; };
 		84916DD8288C372B00AA08D8 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84916DD7288C372B00AA08D8 /* Movie.swift */; };
+		84916DDA288C476700AA08D8 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84916DD9288C476700AA08D8 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		844AB5CA2888405E007E6E40 /* HeroHeaderUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroHeaderUIView.swift; sourceTree = "<group>"; };
 		84916DD5288BE6CF00AA08D8 /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
 		84916DD7288C372B00AA08D8 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		84916DD9288C476700AA08D8 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 		844AB5C628882B5A007E6E40 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				84916DD9288C476700AA08D8 /* Extensions.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -204,6 +207,7 @@
 				844AB5CB2888405E007E6E40 /* HeroHeaderUIView.swift in Sources */,
 				84278BF42886F45500B5F042 /* DownloadsViewController.swift in Sources */,
 				84278BD9288698FB00B5F042 /* AppDelegate.swift in Sources */,
+				84916DDA288C476700AA08D8 /* Extensions.swift in Sources */,
 				84278BDB288698FB00B5F042 /* SceneDelegate.swift in Sources */,
 				84278BF02886F3F900B5F042 /* UpcomingViewController.swift in Sources */,
 				84916DD8288C372B00AA08D8 /* Movie.swift in Sources */,
