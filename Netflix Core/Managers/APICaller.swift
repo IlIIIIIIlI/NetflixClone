@@ -50,7 +50,7 @@ class APICaller {
     }
     
     // for tvs
-    func getTrendingTvs(completion: @escaping (Result<[String], Error>) -> Void) {
+    func getTrendingTvs(completion: @escaping (Result<[TvInterface], Error>) -> Void) {
         guard let url = URL(string: "\(Constants.baseURL)3/trending/tv/day?api_key=\(Constants.API_KEY)") else {return}
         
         // we get the data! from the link
@@ -59,8 +59,8 @@ class APICaller {
                 return
             }
             do {
-                let results = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
-                print(results)
+                let results = try JSONDecoder().decode(TrendingTVResponse.self, from: data)
+                completion(.success(results.results))
             } catch {
                 print(error.localizedDescription)
             }
@@ -70,5 +70,41 @@ class APICaller {
     }
     
     
+    func getStockAPI(completion: @escaping (Result<[StockInterface], Error>) -> Void) {
+        let stockAPIUrl = String(format: "http://api.tushare.pro")
+            guard let serviceUrl = URL(string: stockAPIUrl) else { return }
+            let parameters: [String: Any] = [
     
-}
+                "api_name": "stock_basic",
+                "token": "25dbbe173567b0dc611ad5278f902aa6c7267b5db1941d767072ccfa",
+                "params": ["list_status": "L"],
+                "fields": ""
+                
+            ]
+            var request = URLRequest(url: serviceUrl)
+            request.httpMethod = "POST"
+            request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
+            guard let httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: []) else {
+                return
+            }
+            request.httpBody = httpBody
+            request.timeoutInterval = 20
+            let session = URLSession.shared
+            session.dataTask(with: request) { (data, response, error) in
+//                if let response = response {
+//                    print(response)
+//                }
+                if let data = data {
+                    do {
+//                        let json = try JSONSerialization.jsonObject(with: data, options: [])
+                        let results = try JSONDecoder().decode(StockAPIResponse.self, from: data)
+                        print(results)
+                    } catch {
+                        print(error)
+                    }
+                }
+            }.resume()
+        }
+    }
+    
+

@@ -73,8 +73,6 @@ class HomeViewController: UIViewController {
     }
     
     
-    
-    
     // layout as well reset
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -83,7 +81,7 @@ class HomeViewController: UIViewController {
     
     // 与APICaller相呼应，用于提取数据到主页
     private func getTrendingMovies() {
-        APICaller.shared.getTrendingTvs { results in
+        APICaller.shared.getStockAPI { results in
             
             // home 会做一个条件判断
 //            switch results {
@@ -166,6 +164,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     //scroll view
+    //用这个来保证在下滑时候最上面的那个bar会被推入上面，而不是一直frezee在上面
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let defaultOffset = view.safeAreaInsets.top
         let offset = scrollView.contentOffset.y + defaultOffset
